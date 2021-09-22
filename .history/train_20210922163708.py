@@ -67,8 +67,7 @@ def loss_func(recon_x, inputs, mu, log_sigma):
 	# Calculate the loss. Note that the loss includes two parts.
 	# 1. the reconstruction loss.
 	# We regard the MNIST as binary classification
-	# reconstruction_loss = F.binary_cross_entropy(recon_x, inputs, reduction='sum')
-	reconstruction_loss = nn.MSELoss(recon_x, inputs, reduction='sum')
+	reconstruction_loss = F.binary_cross_entropy(recon_x, inputs, reduction='sum')
 
 	# 2. KL-divergence
 	# D_KL(Q(z|X) || P(z)); calculate in closed form as both dist. are Gaussian
@@ -113,6 +112,7 @@ def train():
 			# get the inputs; data is a list of [inputs, labels]
 			# Remember to deploy the input data on GPU
 			inputs = data[0].to(device)
+			print(in)
 
 			# forward
 			res, mu, log_sigma = myVAE(inputs)
