@@ -69,7 +69,6 @@ def loss_func(recon_x, inputs, mu, log_sigma):
 	# We regard the MNIST as binary classification
 	# reconstruction_loss = F.binary_cross_entropy(recon_x, inputs, reduction='sum')
 	reconstruction_loss = nn.MSELoss( reduction='sum')(recon_x, inputs)
-	#修改了第一项损失
 
 	# 2. KL-divergence
 	# D_KL(Q(z|X) || P(z)); calculate in closed form as both dist. are Gaussian
